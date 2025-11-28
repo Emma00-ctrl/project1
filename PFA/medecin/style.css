@@ -1,0 +1,487 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+.header {
+  background-color:#f2fbfd;
+  padding: 1rem 2rem;
+  border-radius: 0 0 16px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #00bcd4;
+}
+
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.nav a {
+  font-weight: 500;
+  color: #000 !important;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: #00bcd4 !important;
+  transform: translateY(-2px);
+}
+
+.link-btn {
+  background-color: #00bcd4;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-btn:hover {
+  background-color: #0097a7;
+  transform: scale(1.05);
+}
+
+#menu-btn {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #00bcd4;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#menu-btn:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #0097a7;
+}
+
+@media (max-width: 991px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: #f2fbfd;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  #menu-btn {
+    display: block;
+  }
+}
+
+.home {
+  min-height: 100vh;
+  background: url('image/brush-teeth-brushing-teeth.gif') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  color: rgb(213, 247, 255);
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+}
+
+.home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.home .content {
+  max-width: 700px;
+  margin-left: 30px;
+}
+
+.home h3 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.home p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .home h3 {
+    font-size: 2rem;
+  }
+
+  .home p {
+    font-size: 1rem;
+  }
+
+  .home .content {
+    margin-left: 15px;
+  }
+}
+
+/* --- About Section Styling --- */
+.about-title {
+font-size: 2rem;
+color: #000;
+font-weight: 700;
+margin-bottom: 40px;
+}
+
+.about {
+margin-top: 100px;
+padding: 60px 0;
+}
+
+.about .about-img {
+max-width: 60%;
+height: auto;
+border-radius: 12px;
+transition: all 0.3s ease;
+}
+
+.about .content h4 {
+font-size: 1.6rem;
+color: #333;
+margin-bottom: 1rem;
+font-weight: 600;
+line-height: 1.6;
+}
+
+.about .content p {
+font-size: 1rem;
+color: #666;
+line-height: 1.6;
+font-weight: 300;
+margin-top: 0.5rem;
+}
+
+@media (max-width: 767px) {
+.about .about-img {
+max-width: 80%;
+}
+
+.about .content h4 {
+font-size: 1.3rem;
+}
+
+.about .content p {
+font-size: 0.95rem;
+}
+}
+
+
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: black;
+}
+
+.service-box {
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 30px 15px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  height: 100%;
+}
+
+.service-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 15px;
+}
+
+.service-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.service-desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+
+.review-card {
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 70% 70%;
+}
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #0dcaf0;
+  border: none;
+  font-size: 22px;
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+
+
+/* Animation fluide lors du défilement */
+.slider-container {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.slider-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-item {
+    min-width: 100%;
+}
+
+  .section-title {
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease-in-out;
+  }
+  .service-item {
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    border-radius: 20px;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 370px;
+    position: relative;
+    z-index: 1;
+  }
+  .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .service-img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  .service-item:hover .service-img {
+    transform: scale(1.08);
+  }
+  .service-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .service-desc {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Floating icons */
+  .floating-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3689/3689445.png');
+    background-repeat: repeat;
+    background-size: 80px;
+    opacity: 0.05;
+    animation: float 60s linear infinite;
+  }
+
+  /* Animation */
+  @keyframes float {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 0; }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SVG wave separator */
+  .wave {
+    margin-top: -60px;
+  }
+
+  /*---------------------------------- */
+
+
+.dentist-icon {
+font-size: 50px;
+color: #0dcaf0;
+text-align: center;
+margin-bottom: 10px;
+}
+
+#authModalLabel {
+color: #212529;
+font-weight: 600;
+text-align: center;
+font-size: 1.5rem;
+margin-bottom: 10px;
+}
+
+.form-control {
+border-radius: 12px;
+padding: 10px 15px;
+}
+
+.btn-dentist {
+background: linear-gradient(135deg, #0dcaf0, #31d2f2);
+color: white;
+border-radius: 30px;
+padding: 10px 20px;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.btn-dentist:hover {
+background: linear-gradient(135deg, #0bbbd8, #20c8e0);
+}
+
+.link-btn {
+background: linear-gradient(135deg, #0dcaf0, #31d2f2);
+color: white;
+font-weight: bold;
+font-size: 1.1rem;
+border-radius: 50px;
+padding: 12px 30px;
+box-shadow: 0 4px 15px rgba(0, 207, 255, 0.3);
+transition: all 0.3s ease;
+border: none;
+}
+
+.link-btn:hover {
+background: linear-gradient(135deg, #0bbbd8, #20c8e0);
+transform: scale(1.05);
+}
+
+
+footer {
+  margin-top: 50px;
+  background-color: #f2fbfd; /* Background clair sans image */
+  opacity: 0.98;
+}
+footer h5 {
+  color: #00bcd4; /* Titres turquoise */
+  font-weight: bold;
+}
+footer p, footer a {
+  color: #000000; /* Texte et liens noirs */
+}
+footer a:hover {
+  color: #00bcd4;
+  text-decoration: underline;
+}
+.social-icon:hover {
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+.small-btn {
+  padding: 4px 8px;     /* قصينا padding باش يولي الزر صغير */
+  font-size: 12px;       /* نقصنا الخط */
+  border-radius: 8px;    /* دوران صغير للحواف */
+  min-width: 80px;       /* خليت حجم ميني باش ما يصغروش بزربه برشة */
+  text-align: center;
+}
+
+/*---------------- css toggle medecin --------------*/
+.doctor-icon {
+  font-size: 60px;
+}
+
+#doctorModal .modal-content {
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*------------------ css toggle admin------*/
+
+.admin-icon {
+  font-size: 60px;
+}
+
+#adminModal .modal-content {
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s;
+}
+

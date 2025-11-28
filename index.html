@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dental Care</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles pour le mode sombre */
+    .dark-mode {
+      background-color:  #121212;
+      color: #ffffff;
+    }
+    
+    .dark-mode .header,
+    .dark-mode .home,
+    .dark-mode .about,
+    .dark-mode #services,
+    .dark-mode .review,
+    .dark-mode footer {
+      background-color: #1e1e1e !important;
+      color: #ffffff !important;
+    }
+    
+    .dark-mode .header a,
+    .dark-mode .header .nav a,
+    .dark-mode .home h3,
+    .dark-mode .home p,
+    .dark-mode .about h2,
+    .dark-mode .about h4,
+    .dark-mode .about p,
+    .dark-mode .section-title,
+    .dark-mode .service-box,
+    .dark-mode .service-title,
+    .dark-mode .service-desc,
+    .dark-mode .review-card h5,
+    .dark-mode .review-card p,
+    .dark-mode footer p,
+    .dark-mode footer h5 {
+      color: #ffffff !important;
+    }
+    
+    .dark-mode .card {
+      background-color: #2d2d2d;
+      border-color: #444;
+    }
+    
+    .dark-mode .service-box {
+      background-color: #2d2d2d !important;
+      border: 1px solid #444 !important;
+    }
+    
+    .dark-mode .form-control,
+    .dark-mode .form-control:focus {
+      background-color: #2d2d2d;
+      color: #fff;
+      border-color: #444;
+    }
+    
+    .dark-mode .modal-content {
+      background-color: #2d2d2d;
+      color: #fff;
+    }
+    
+    .dark-mode .nav-tabs .nav-link {
+      color: #fff;
+    }
+    
+    .dark-mode .nav-tabs .nav-link.active {
+      background-color: #444;
+      color: #fff;
+    }
+    
+    /* Styles pour les boutons du header */
+    .theme-switcher {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+      gap: 8px;
+    }
+    
+    .theme-btn {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 1px solid transparent;
+    }
+    
+    .theme-btn i {
+      margin-right: 5px;
+      font-size: 0.9rem;
+    }
+    
+    .light-btn {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    
+    .light-btn:hover {
+      background-color: #e9ecef;
+      transform: translateY(-2px);
+    }
+    
+    .dark-btn {
+      background-color: #343a40;
+      color: #f8f9fa;
+    }
+    
+    .dark-btn:hover {
+      background-color: #23272b;
+      transform: translateY(-2px);
+    }
+    
+    .theme-btn.active {
+      border: 1px solid #0d6efd;
+      box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+    }
+    
+    /* Améliorations pour les cartes de service */
+    .service-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px 20px;
+      height: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .dark-mode .service-box:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      object-fit: contain;
+    }
+    
+    .service-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    
+    .service-desc {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+    
+    .dark-mode .service-desc {
+      color: #adb5bd !important;
+    }
+    
+    /* Correction pour le titre About Us */
+    .about-title {
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header d-flex align-items-center justify-content-between">
+    <a href="#" class="logo">Dental<span>Care.</span></a>
+  
+    <nav class="nav" id="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#review">Reviews</a>
+    </nav>
+    
+    <form class="d-flex align-items-center search-bar me-3" style="max-width: 200px;">
+      <input class="form-control form-control-sm me-1" type="search" placeholder="Search..." aria-label="Search">
+      <button type="submit">😄</button>
+    </form>
+  
+    <!-- Boutons de thème modernes -->
+    <div class="theme-switcher">
+      <button class="theme-btn light-btn" id="lightModeBtn" title="Mode clair">
+        <i class="fas fa-sun"></i> 
+      </button>
+      <button class="theme-btn dark-btn" id="darkModeBtn" title="Mode sombre">
+        <i class="fas fa-moon"></i> 
+      </button>
+    </div>
+    
+    <div class="btn-group d-none d-lg-block" role="group">
+      <button type="button" class="link-btn small-btn" data-bs-toggle="modal" data-bs-target="#doctorModal">
+        <i class="fas fa-user-md me-1"></i> Médecin
+      </button>
+      <button type="button" class="link-btn small-btn" data-bs-toggle="modal" data-bs-target="#authModal">
+        <i class="fas fa-user me-1"></i> Patient
+      </button>
+    </div>
+    
+    <div id="menu-btn" class="fas fa-bars"></div>
+  </header>
+  
+  <section class="home" id="home">
+    <div class="container">
+      <div class="content">
+        <h3>Let us brighten your smile</h3>
+        <p>Your trusted partner for healthy teeth and confident smiles.</p>
+  
+        <a href="#contact" class="link-btn" data-bs-toggle="modal" data-bs-target="#authModal">Make Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about"> 
+    <div class="container">
+      <h2 class="about-title text-center mb-5">About Us</h2>
+      <div class="row align-items-center">
+        <div class="col-md-5 image text-center mb-4 mb-md-0">
+          <img src="image/img1.jpg" class="img-fluid about-img" alt="About Us Image">
+        </div>
+        <div class="col-md-7 content ps-md-3">
+          <h4>Your family's health is our priority — we're committed to providing compassionate dental care in a welcoming environment, using advanced techniques and personalized attention to make every visit stress-free and effective.</h4>
+          <p>We believe that a healthy smile begins with trust and comfort. Our team is here to support you with expert advice, preventive care, and the latest treatments tailored to your needs, no matter your age or background.</p>
+          <a href="#contact" class="link-btn mt-3">Make Appointment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="services" class="text-center py-5">
+    <div class="container">
+      <h2 class="section-title mb-5">Our Services</h2>
+      <div class="row g-4 justify-content-center">
+        <!-- Service 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img2.png" alt="Alignment" class="service-icon">
+            <div class="service-title">Alignment</div>
+            <div class="service-desc">Straightening your teeth with precision.</div>
+          </div>
+        </div>
+        <!-- Service 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img3.png" alt="Cosmetic" class="service-icon">
+            <div class="service-title">Cosmetic Dentistry</div>
+            <div class="service-desc">Make your smile shine brighter.</div>
+          </div>
+        </div>
+        <!-- Service 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img4.png" alt="Hygiene" class="service-icon">
+            <div class="service-title">Oral Hygiene</div>
+            <div class="service-desc">Keep your mouth clean and fresh.</div>
+          </div>
+        </div>
+        <!-- Service 4 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img5.png" alt="Root Canal" class="service-icon">
+            <div class="service-title">Root Canal</div>
+            <div class="service-desc">Treat deep infections & save your tooth.</div>
+          </div>
+        </div>
+        <!-- Service 5 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img6.png" alt="Advisory" class="service-icon">
+            <div class="service-title">Live Advisory</div>
+            <div class="service-desc">Instant dental advice and support.</div>
+          </div>
+        </div>
+        <!-- Service 6 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="service-box">
+            <img src="image/img7.png" alt="Cavity" class="service-icon">
+            <div class="service-title">Cavity Check</div>
+            <div class="service-desc">Detect holes or early decay signs.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="review" class="review py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title fw-bold">Satisfied Clients</h2>
+      </div>
+  
+      <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+        
+        <div class="carousel-inner">
+  
+          <!-- Première slide -->
+          <div class="carousel-item active">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/pass1.png" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client1">
+                  <h5 class="mt-3 fw-bold">Hana Bouzid</h5>
+                  <p class="text-muted">Très bonne expérience, l'équipe est super sympa !</p>
+                  <div class="text-warning fs-4">★★★★★</div>
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/pass2.png" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client2">
+                  <h5 class="mt-3 fw-bold">Ines Abid</h5>
+                  <p class="text-muted">Service rapide et sans douleur. Merci docteur !</p>
+                  <div class="text-warning fs-4">★★★★☆</div>
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/patient2.png" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client3">
+                  <h5 class="mt-3 fw-bold">Nour Hfaiedh</h5>
+                  <p class="text-muted">Mes enfants adorent venir ici, ambiance top !</p>
+                  <div class="text-warning fs-4">★★★★★</div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Deuxième slide -->
+          <div class="carousel-item">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/patient3.png" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client4">
+                  <h5 class="mt-3 fw-bold">islem ben harb</h5>
+                  <p class="text-muted">Super accueil et très professionnel.</p>
+                  <div class="text-warning fs-4">★★★★★</div>
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/patient4.jpg" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client5">
+                  <h5 class="mt-3 fw-bold">Yassine ben ahmed </h5>
+                  <p class="text-muted">Très satisfaite du service !</p>
+                  <div class="text-warning fs-4">★★★★☆</div>
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                  <img src="image/patient5.jpg" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client6">
+                  <h5 class="mt-3 fw-bold">Karim Trabelsi</h5>
+                  <p class="text-muted">Excellent suivi et très à l'écoute.</p>
+                  <div class="text-warning fs-4">★★★★★</div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="carousel-item">
+            <div class="row g-4" id="carousel3">
+                <!-- New reviews will appear here -->
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section d'ajout d'avis -->
+  <section id="review" class="review py-5" style="color: #00bcd4;">
+    <div class="container">
+      <!-- Formulaire d'ajout d'avis centré -->
+      <div id="reviewForm" class="mt-3" style="display: none;">
+          <form id="formReview" class="row justify-content-center" enctype="multipart/form-data">
+              
+              <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label fw-semibold">Nom</label>
+                  <input type="text" class="form-control form-control-lg" id="name" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                  <label for="surname" class="form-label fw-semibold">Prénom</label>
+                  <input type="text" class="form-control form-control-lg" id="surname" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                  <label for="image" class="form-label fw-semibold">Image</label>
+                  <input type="file" class="form-control form-control-lg" id="image" accept="image/*" required>
+                  <img id="imagePreview" src="" alt="Image Preview" style="max-width: 100px; margin-top: 10px; display: none;">
+              </div>
+
+              <div class="col-md-12 mb-3">
+                  <label for="comment" class="form-label fw-semibold">Commentaire</label>
+                  <textarea class="form-control form-control-lg" id="comment" rows="3" required></textarea>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                  <label for="rating" class="form-label fw-semibold">Note</label>
+                  <div class="d-flex justify-content-start" id="ratingStars">
+                      <span data-value="1" class="star fs-2 text-warning">★</span>
+                      <span data-value="2" class="star fs-2 text-warning">★</span>
+                      <span data-value="3" class="star fs-2 text-warning">★</span>
+                      <span data-value="4" class="star fs-2 text-warning">★</span>
+                      <span data-value="5" class="star fs-2 text-warning">★</span>
+                  </div>
+                  <span id="ratingValue" class="text-warning fs-4">★★★★★</span>
+                  <input type="hidden" id="rating" value="5">
+              </div>
+
+              <div class="col-12 text-center mb-5">
+                  <button type="submit" class="btn btn-lg btn-success shadow-lg">Envoyer</button>
+              </div>
+          </form>
+      </div>
+
+      <!-- Bouton pour afficher le formulaire -->
+    <div class="text-center mt-5">
+      <button id="addReviewBtn" class="btn btn-outline-primary btn-sm px-4 py-2 rounded-pill border-2 shadow-sm">
+        <i class="bi bi-pencil-fill me-1"></i> Ajouter un Avis
+      </button>
+    </div>
+
+    </div>
+  </section>
+
+  <!-- Modal Login / Signup patient-->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="dentist-icon">🦷</div>
+        <h4 id="authModalLabel">Bienvenue chez votre Dentiste</h4>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs nav-fill mt-3 mb-4" id="authTab" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">Se connecter</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button">Créer un compte</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="authTabContent">
+          <!-- Formulaire de Connexion -->
+          <div class="tab-pane fade show active" id="login">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="email" class="form-label">Adresse Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Se connecter</button>
+              </div>
+            </form>
+          </div>
+      
+          <!-- Formulaire Inscription -->
+          <div class="tab-pane fade" id="signup">
+            <form method="POST" action="register.php">
+              <div class="mb-3">
+                <label>Prénom</label>
+                <input type="text" name="prenom" class="form-control" placeholder="Prénom" required>
+              </div>
+              <div class="mb-3">
+                <label>Nom</label>
+                <input type="text" name="nom" class="form-control" placeholder="Nom" required>
+              </div>
+              <div class="mb-3">
+                <label>Téléphone</label>
+                <input type="tel" name="telephone" class="form-control" placeholder="Téléphone" required>
+              </div>
+              <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <label>Mot de passe</label>
+                <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-dentist">Créer un compte</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Connexion Médecin -->
+  <div class="modal fade" id="doctorModal" tabindex="-1" aria-labelledby="doctorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4" style="background-color: #e0f7fa;">
+        <div class="text-center mb-3">
+          <div class="doctor-icon" style="font-size: 50px;">🩺</div>
+          <h4 id="doctorModalLabel" class="fw-bold mt-2">Connexion Médecin</h4>
+          <p class="text-muted">Accédez à votre espace professionnel</p>
+        </div>
+
+        <!-- Formulaire corrigé -->
+        <form id="doctorLoginForm" method="POST">
+          <div class="mb-3">
+            <label>Email professionnel</label>
+            <input type="email" id="doctorEmail" name="email" class="form-control" placeholder="Email professionnel" required>
+          </div>
+          <div class="mb-3">
+            <label>Mot de passe</label>
+            <input type="password" id="doctorPassword" name="password" class="form-control" placeholder="Mot de passe" required>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+          </div>
+
+          <div class="text-center mt-3">
+            <p class="text-muted">
+              Nouveau médecin ? <a href="doctor_register.php" class="fw-bold text-primary">Créer un compte</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="pt-5 pb-4">
+    <div class="container text-center text-md-start">
+      <div class="row text-center text-md-start">
+
+        <!-- Contact Info -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <p><i class="fas fa-envelope me-3"></i> contact@dentalcare.com</p>
+          <p><i class="fas fa-phone me-3"></i> +216 20 123 456</p>
+          <p><i class="fas fa-print me-3"></i> +216 71 123 456</p>
+        </div>
+
+        <!-- Address -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4">Location</h5>
+          <p><i class="fas fa-map-marker-alt me-3"></i> 123 Health Street, Tunis, Tunisia</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.618179665496!2d10.181277315295668!3d36.89994097993206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb7454c6ed51%3A0x683b7ab27c63b0b3!2sTunis!5e0!3m2!1sen!2stn!4v1620000000000!5m2!1sen!2stn" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <!-- Hours -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4">Opening Hours</h5>
+          <p><i class="fas fa-clock me-3"></i> Monday - Friday: 8am - 6pm</p>
+          <p><i class="fas fa-clock me-3"></i> Saturday: 9am - 1pm</p>
+          <p><i class="fas fa-times-circle me-3"></i> Sunday: Closed</p>
+          <p><i class="fas fa-calendar-alt me-3"></i> Emergency: 24/7</p>
+        </div>
+
+        <!-- Social Media -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4">Follow Us</h5>
+          <div class="d-flex justify-content-center justify-content-md-start flex-wrap">
+            <a href="#" class="social-icon me-2 mb-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon me-2 mb-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon me-2 mb-2"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon me-2 mb-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon me-2 mb-2"><i class="fab fa-youtube"></i></a>
+          </div>
+          
+    
+        </div>
+
+      </div>
+
+      <hr class="my-4">
+
+      <!-- Copyright -->
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; 2025 DentalCare. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="mb-0">Created with <i class="fas fa-heart text-danger"></i> by Emna Ben Harb (G1) & Ameni Nagati (G2)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Gestion du mode sombre/clair améliorée
+    const lightModeBtn = document.getElementById('lightModeBtn');
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        darkModeBtn.classList.add('active');
+        lightModeBtn.classList.remove('active');
+      } else {
+        document.body.classList.remove('dark-mode');
+        lightModeBtn.classList.add('active');
+        darkModeBtn.classList.remove('active');
+      }
+      localStorage.setItem('theme', theme);
+    }
+    
+    darkModeBtn.addEventListener('click', function() {
+      setTheme('dark');
+    });
+    
+    lightModeBtn.addEventListener('click', function() {
+      setTheme('light');
+    });
+    
+    // Vérifier le thème au chargement de la page
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche la soumission classique
+    
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+    
+        try {
+            const response = await fetch('login_patient.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+            });
+    
+            const data = await response.json(); // Attends une réponse JSON
+    
+            if (data.success) {
+                // Connexion réussie
+                window.location.href = 'home_patient.php'; // Redirection vers la page d'accueil patient
+            } else {
+                alert(data.message); // Affiche un message d'erreur
+            }
+    
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Erreur de connexion au serveur.');
+        }
+    });
+    
+    document.getElementById('doctorLoginForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche l'envoi classique du formulaire
+    
+        const email = document.getElementById('doctorEmail').value;
+        const password = document.getElementById('doctorPassword').value;
+    
+        try {
+            const response = await fetch('doctor_login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+            });
+    
+            const data = await response.json(); // Attend une réponse JSON
+    
+            if (data.success) {
+                // Connexion réussie
+                window.location.href = 'home_doctor.php'; // Redirige vers la page d'accueil du médecin
+            } else {
+                alert(data.message); // Affiche un message d'erreur
+            }
+    
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Erreur de connexion au serveur.');
+        }
+    });
+
+    // Afficher ou masquer le formulaire
+    document.getElementById('addReviewBtn').addEventListener('click', function () {
+        const form = document.getElementById('reviewForm');
+        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    });
+
+    // Prévisualisation de l'image téléchargée
+    document.getElementById('image').addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = event.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Gérer l'ajout du commentaire
+    document.getElementById('formReview').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const image = document.getElementById('image').files[0];
+        const comment = document.getElementById('comment').value;
+        const rating = document.getElementById('rating').value;
+        const ratingText = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+        // Créer un lien de téléchargement pour l'image
+        const imageUrl = URL.createObjectURL(image);
+
+        // Créer une nouvelle carte de review
+        const newReview = `
+            <div class="col-md-4">
+                <div class="card review-card text-center p-4">
+                    <img src="${imageUrl}" class="rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="client">
+                    <h5 class="mt-3 fw-bold">${name} ${surname}</h5>
+                    <p class="text-muted">${comment}</p>
+                    <div class="text-warning fs-4">${ratingText}</div>
+                </div>
+            </div>
+        `;
+
+        // Ajouter le commentaire au troisième slider
+        const carousel3 = document.getElementById('carousel3');
+        carousel3.insertAdjacentHTML('beforeend', newReview);
+
+        // Réinitialiser le formulaire
+        document.getElementById('formReview').reset();
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('reviewForm').style.display = 'none';
+
+        // Passer au troisième slider
+        const carousel = new bootstrap.Carousel('#reviewCarousel');
+        carousel.to(2); // Passer au troisième slider
+    });
+
+    // Mise à jour de la note (affichage dynamique avec les étoiles)
+    document.getElementById('ratingStars').addEventListener('click', function (e) {
+        if (e.target.tagName === 'SPAN') {
+            const rating = e.target.getAttribute('data-value');
+            document.getElementById('rating').value = rating;
+            const stars = document.querySelectorAll('#ratingStars span');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('text-warning');
+                } else {
+                    star.classList.remove('text-warning');
+                }
+            });
+            document.getElementById('ratingValue').textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        }
+    });
+  </script>
+</body>
+</html>
